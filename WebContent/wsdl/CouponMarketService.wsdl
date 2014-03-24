@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://connection" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://connection" xmlns:intf="http://connection" xmlns:tns1="http://module" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://connection" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://module"/>
+   <element name="login">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="loginResponse">
+    <complexType>
+     <sequence>
+      <element name="loginReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="signUp">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+      <element name="lname" type="xsd:string"/>
+      <element name="fname" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="signUpResponse">
+    <complexType>
+     <sequence>
+      <element name="signUpReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="postItem">
+    <complexType>
+     <sequence>
+      <element name="seller_id" type="xsd:string"/>
+      <element name="quantity" type="xsd:int"/>
+      <element name="merchandise" type="xsd:string"/>
+      <element name="description" type="xsd:string"/>
+      <element name="price" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="postItemResponse">
+    <complexType>
+     <sequence>
+      <element name="postItemReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addToCart">
+    <complexType>
+     <sequence>
+      <element name="item_id" type="xsd:int"/>
+      <element name="buyer_id" type="xsd:string"/>
+      <element name="quantity" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addToCartResponse">
+    <complexType>
+     <sequence>
+      <element name="addToCartReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="makeOrder">
+    <complexType>
+     <sequence>
+      <element name="buyer_id" type="xsd:string"/>
+      <element name="address" type="xsd:string"/>
+      <element name="item_id" type="xsd:int"/>
+      <element name="creditCard" type="xsd:string"/>
+      <element name="quantity" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="makeOrderResponse">
+    <complexType>
+     <sequence>
+      <element name="makeOrderReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="reduceStock">
+    <complexType>
+     <sequence>
+      <element name="item_id" type="xsd:int"/>
+      <element name="sellQuantity" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="reduceStockResponse">
+    <complexType/>
+   </element>
+   <element name="getAllItem">
+    <complexType/>
+   </element>
+   <element name="getAllItemResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getAllItemReturn" type="tns1:item"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://module" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="item">
+    <sequence>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="item_id" nillable="true" type="xsd:int"/>
+     <element name="merchandise" nillable="true" type="xsd:string"/>
+     <element name="price" nillable="true" type="xsd:double"/>
+     <element name="quantity" nillable="true" type="xsd:int"/>
+     <element name="seller_id" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="reduceStockResponse">
+
+      <wsdl:part element="impl:reduceStockResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="makeOrderRequest">
+
+      <wsdl:part element="impl:makeOrder" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addToCartRequest">
+
+      <wsdl:part element="impl:addToCart" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllItemResponse">
+
+      <wsdl:part element="impl:getAllItemResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="signUpRequest">
+
+      <wsdl:part element="impl:signUp" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="postItemResponse">
+
+      <wsdl:part element="impl:postItemResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="signUpResponse">
+
+      <wsdl:part element="impl:signUpResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginResponse">
+
+      <wsdl:part element="impl:loginResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addToCartResponse">
+
+      <wsdl:part element="impl:addToCartResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="makeOrderResponse">
+
+      <wsdl:part element="impl:makeOrderResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="postItemRequest">
+
+      <wsdl:part element="impl:postItem" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="reduceStockRequest">
+
+      <wsdl:part element="impl:reduceStock" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllItemRequest">
+
+      <wsdl:part element="impl:getAllItem" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginRequest">
+
+      <wsdl:part element="impl:login" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="CouponMarketService">
+
+      <wsdl:operation name="login">
+
+         <wsdl:input message="impl:loginRequest" name="loginRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:loginResponse" name="loginResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="signUp">
+
+         <wsdl:input message="impl:signUpRequest" name="signUpRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:signUpResponse" name="signUpResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="postItem">
+
+         <wsdl:input message="impl:postItemRequest" name="postItemRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:postItemResponse" name="postItemResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addToCart">
+
+         <wsdl:input message="impl:addToCartRequest" name="addToCartRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addToCartResponse" name="addToCartResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="makeOrder">
+
+         <wsdl:input message="impl:makeOrderRequest" name="makeOrderRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:makeOrderResponse" name="makeOrderResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="reduceStock">
+
+         <wsdl:input message="impl:reduceStockRequest" name="reduceStockRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:reduceStockResponse" name="reduceStockResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllItem">
+
+         <wsdl:input message="impl:getAllItemRequest" name="getAllItemRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllItemResponse" name="getAllItemResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CouponMarketServiceSoapBinding" type="impl:CouponMarketService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="login">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="loginRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="loginResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="signUp">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="signUpRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="signUpResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="postItem">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="postItemRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="postItemResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addToCart">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addToCartRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addToCartResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="makeOrder">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="makeOrderRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="makeOrderResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="reduceStock">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="reduceStockRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="reduceStockResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllItem">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllItemRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllItemResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CouponMarketServiceService">
+
+      <wsdl:port binding="impl:CouponMarketServiceSoapBinding" name="CouponMarketService">
+
+         <wsdlsoap:address location="http://localhost:8080/CouponMarket/services/CouponMarketService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
