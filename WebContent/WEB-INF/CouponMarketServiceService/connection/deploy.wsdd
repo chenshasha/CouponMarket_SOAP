@@ -14,23 +14,12 @@
         <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:email" type="tns:string"/>
         <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:password" type="tns:string"/>
       </operation>
-      <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="signUp" qname="operNS:signUp" returnQName="retNS:signUpReturn" returnType="rtns:boolean" soapAction="">
-        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:email" type="tns:string"/>
-        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:password" type="tns:string"/>
-        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:lname" type="tns:string"/>
-        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:fname" type="tns:string"/>
+      <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://module" name="getItemFromId" qname="operNS:getItemFromId" returnQName="retNS:getItemFromIdReturn" returnType="rtns:Item" soapAction="">
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
       </operation>
-      <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="postItem" qname="operNS:postItem" returnQName="retNS:postItemReturn" returnType="rtns:boolean" soapAction="">
-        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:seller_id" type="tns:string"/>
-        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:quantity" type="tns:int"/>
-        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:merchandise" type="tns:string"/>
-        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:description" type="tns:string"/>
-        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:price" type="tns:double"/>
-      </operation>
-      <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addToCart" qname="operNS:addToCart" returnQName="retNS:addToCartReturn" returnType="rtns:boolean" soapAction="">
+      <operation xmlns:operNS="http://connection" name="reduceStock" qname="operNS:reduceStock" soapAction="">
         <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:item_id" type="tns:int"/>
-        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:buyer_id" type="tns:string"/>
-        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:quantity" type="tns:int"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:sellQuantity" type="tns:int"/>
       </operation>
       <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="makeOrder" qname="operNS:makeOrder" returnQName="retNS:makeOrderReturn" returnType="rtns:boolean" soapAction="">
         <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:buyer_id" type="tns:string"/>
@@ -39,14 +28,38 @@
         <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:creditCard" type="tns:string"/>
         <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:quantity" type="tns:int"/>
       </operation>
-      <operation xmlns:operNS="http://connection" name="reduceStock" qname="operNS:reduceStock" soapAction="">
+      <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addToCart" qname="operNS:addToCart" returnQName="retNS:addToCartReturn" returnType="rtns:boolean" soapAction="">
         <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:item_id" type="tns:int"/>
-        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:sellQuantity" type="tns:int"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:buyer_id" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:quantity" type="tns:int"/>
       </operation>
-      <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://module" name="getAllItem" qname="operNS:getAllItem" returnQName="retNS:getAllItemReturn" returnType="rtns:item" soapAction="">
+      <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="postItem" qname="operNS:postItem" returnQName="retNS:postItemReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:seller_id" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:quantity" type="tns:int"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:merchandise" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:description" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:price" type="tns:double"/>
       </operation>
-      <parameter name="allowedMethods" value="postItem signUp login getAllItem makeOrder addToCart reduceStock"/>
+      <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="signUp" qname="operNS:signUp" returnQName="retNS:signUpReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:email" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:password" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:lname" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:fname" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://module" name="getAllItem" qname="operNS:getAllItem" returnQName="retNS:getAllItemReturn" returnType="rtns:Item" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getItemInCart" qname="operNS:getItemInCart" returnQName="retNS:getItemInCartReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:buyer_id" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAllOrder" qname="operNS:getAllOrder" returnQName="retNS:getAllOrderReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:buyer_id" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://module" name="getOrderDetail" qname="operNS:getOrderDetail" returnQName="retNS:getOrderDetailReturn" returnType="rtns:order" soapAction="">
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:order_id" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="getItemFromId postItem getItemInCart signUp getOrderDetail login getAllItem makeOrder getAllOrder addToCart reduceStock"/>
 
-      <typeMapping xmlns:ns="http://module" qname="ns:item" type="java:module.Item" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://module" qname="ns:order" type="java:module.Order" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://module" qname="ns:Item" type="java:module.Item" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
   </service>
 </deployment>

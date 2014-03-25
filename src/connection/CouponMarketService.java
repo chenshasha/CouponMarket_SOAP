@@ -2,7 +2,9 @@ package connection;
 
 import javax.jws.WebService;
 
-import module.item;
+import module.Item;
+import module.order;
+import module.user;
 
 import java.sql.SQLException;
 
@@ -10,11 +12,37 @@ import java.sql.SQLException;
 @WebService
 public class CouponMarketService {
 	
-	public item[] getAllItem(){
-		item[] items = new item[1000];
+//	public user getUser(String email){
+//		DatabaseConnection db=new DatabaseConnection();
+//		return db.getUser(email);
+//	}
+	
+	public order getOrderDetail(String order_id){
+		DatabaseConnection db=new DatabaseConnection();		
+		return db.getOrderDetail(order_id);
+	}
+	
+	public String[] getAllOrder(String buyer_id){
+		DatabaseConnection db=new DatabaseConnection();		
+		return db.getAllOrder(buyer_id);
+	}
+	
+	public int[] getItemInCart(String buyer_id){
+		
+		DatabaseConnection db=new DatabaseConnection();		
+		return db.getItemInCart(buyer_id);
+	}
+	
+	public Item getItemFromId(int id){
 		DatabaseConnection db=new DatabaseConnection();
-		items = db.getAllItem();
-		return items;
+		return db.getItemFromId(id);
+	}
+	
+	public Item[] getAllItem(){
+		
+		DatabaseConnection db=new DatabaseConnection();
+		return db.getAllItem();
+
 	}
 	
 	public void reduceStock(Integer item_id, Integer sellQuantity){

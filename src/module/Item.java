@@ -2,8 +2,8 @@ package module;
 
 //import java.sql.Date;
 
-public class item {
-	//private Date createDate;
+public class Item {
+	private String createDate;
 	private Integer quantity;
 	private String merchandise;
 	private String description;
@@ -23,12 +23,12 @@ public class item {
 	public void setItem_id(Integer item_id) {
 		this.item_id = item_id;
 	}
-//	public Date getCreateDate() {
-//		return createDate;
-//	}
-//	public void setCreateDate(Date createDate) {
-//		this.createDate = createDate;
-//	}
+	public String getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
 	public Integer getQuantity() {
 		return quantity;
 	}

@@ -1,12 +1,11 @@
 package module;
 
-import java.sql.Date;
 
 public class cart {
 	private Integer item_id;
 	private String buyer_id;
 	private Integer quantity;
-	private Date addDate;
+	private String addDate;
 	private Integer cart_id;
 	
 	public Integer getCart_id() {
@@ -33,10 +32,10 @@ public class cart {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	public Date getAddDate() {
+	public String getAddDate() {
 		return addDate;
 	}
-	public void setAddDate(Date addDate) {
+	public void setAddDate(String addDate) {
 		this.addDate = addDate;
 	}
 

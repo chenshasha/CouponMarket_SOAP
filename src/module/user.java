@@ -1,14 +1,13 @@
 package module;
 
-import java.sql.Date;
 
 public class user {
 	private String lname;
 	private String fname;
 	private String email;
 	private String password;
-	private Date lastCheckin;
-	private Date curCheckin;
+	private String lastCheckin;
+	private String curCheckin;
 	
 	public String getLname() {
 		return lname;
@@ -34,16 +33,16 @@ public class user {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Date getLastCheckin() {
+	public String getLastCheckin() {
 		return lastCheckin;
 	}
-	public void setLastCheckin(Date lastCheckin) {
+	public void setLastCheckin(String lastCheckin) {
 		this.lastCheckin = lastCheckin;
 	}
-	public Date getCurCheckin() {
+	public String getCurCheckin() {
 		return curCheckin;
 	}
-	public void setCurCheckin(Date curCheckin) {
+	public void setCurCheckin(String curCheckin) {
 		this.curCheckin = curCheckin;
 	}
 

@@ -1,13 +1,11 @@
 package module;
 
-import java.sql.Date;
-
 public class order {
 	
 	private Integer quantity;
 	private String buyer_id;
 	private String order_id;
-	private Date placedDate;
+	private String placedDate;
 	private String address;
 	private Integer item_id;
 	private String creditCard;
@@ -31,10 +29,10 @@ public class order {
 	public void setOrder_id(String order_id) {
 		this.order_id = order_id;
 	}
-	public Date getPlacedDate() {
+	public String getPlacedDate() {
 		return placedDate;
 	}
-	public void setPlacedDate(Date placedDate) {
+	public void setPlacedDate(String placedDate) {
 		this.placedDate = placedDate;
 	}
 	public String getAddress() {

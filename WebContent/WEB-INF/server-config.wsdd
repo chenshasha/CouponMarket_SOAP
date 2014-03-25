@@ -27,23 +27,12 @@
    <ns2:parameter qname="ns1:email" type="xsd:string"/>
    <ns2:parameter qname="ns1:password" type="xsd:string"/>
   </ns2:operation>
-  <ns1:operation name="signUp" qname="ns2:signUp" returnQName="ns2:signUpReturn" returnType="xsd:boolean" soapAction="" xmlns:ns2="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns2:email" type="xsd:string"/>
-   <ns1:parameter qname="ns2:password" type="xsd:string"/>
-   <ns1:parameter qname="ns2:lname" type="xsd:string"/>
-   <ns1:parameter qname="ns2:fname" type="xsd:string"/>
+  <ns1:operation name="getItemFromId" qname="ns2:getItemFromId" returnQName="ns2:getItemFromIdReturn" returnType="ns3:Item" soapAction="" xmlns:ns2="http://connection" xmlns:ns3="http://module">
+   <ns1:parameter qname="ns2:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="postItem" qname="ns3:postItem" returnQName="ns3:postItemReturn" returnType="xsd:boolean" soapAction="" xmlns:ns3="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns3:seller_id" type="xsd:string"/>
-   <ns1:parameter qname="ns3:quantity" type="xsd:int"/>
-   <ns1:parameter qname="ns3:merchandise" type="xsd:string"/>
-   <ns1:parameter qname="ns3:description" type="xsd:string"/>
-   <ns1:parameter qname="ns3:price" type="xsd:double"/>
-  </ns1:operation>
-  <ns1:operation name="addToCart" qname="ns4:addToCart" returnQName="ns4:addToCartReturn" returnType="xsd:boolean" soapAction="" xmlns:ns4="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns4:item_id" type="xsd:int"/>
-   <ns1:parameter qname="ns4:buyer_id" type="xsd:string"/>
-   <ns1:parameter qname="ns4:quantity" type="xsd:int"/>
+  <ns1:operation name="reduceStock" qname="ns4:reduceStock" soapAction="" xmlns:ns4="http://connection">
+   <ns1:parameter qname="ns4:item_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns4:sellQuantity" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
   <ns1:operation name="makeOrder" qname="ns5:makeOrder" returnQName="ns5:makeOrderReturn" returnType="xsd:boolean" soapAction="" xmlns:ns5="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns5:buyer_id" type="xsd:string"/>
@@ -52,20 +41,40 @@
    <ns1:parameter qname="ns5:creditCard" type="xsd:string"/>
    <ns1:parameter qname="ns5:quantity" type="xsd:int"/>
   </ns1:operation>
-  <ns1:operation name="reduceStock" qname="ns6:reduceStock" soapAction="" xmlns:ns6="http://connection">
-   <ns1:parameter qname="ns6:item_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns6:sellQuantity" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="addToCart" qname="ns6:addToCart" returnQName="ns6:addToCartReturn" returnType="xsd:boolean" soapAction="" xmlns:ns6="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:item_id" type="xsd:int"/>
+   <ns1:parameter qname="ns6:buyer_id" type="xsd:string"/>
+   <ns1:parameter qname="ns6:quantity" type="xsd:int"/>
   </ns1:operation>
-  <ns1:parameter name="sendMultiRefs" value="false"/>
-  <ns1:parameter name="wsdlServicePort" value="CouponMarketService"/>
-  <ns1:parameter name="schemaQualified" value="http://connection"/>
-  <ns1:parameter name="className" value="connection.CouponMarketService"/>
+  <ns1:operation name="postItem" qname="ns7:postItem" returnQName="ns7:postItemReturn" returnType="xsd:boolean" soapAction="" xmlns:ns7="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:seller_id" type="xsd:string"/>
+   <ns1:parameter qname="ns7:quantity" type="xsd:int"/>
+   <ns1:parameter qname="ns7:merchandise" type="xsd:string"/>
+   <ns1:parameter qname="ns7:description" type="xsd:string"/>
+   <ns1:parameter qname="ns7:price" type="xsd:double"/>
+  </ns1:operation>
+  <ns1:operation name="signUp" qname="ns8:signUp" returnQName="ns8:signUpReturn" returnType="xsd:boolean" soapAction="" xmlns:ns8="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns8:email" type="xsd:string"/>
+   <ns1:parameter qname="ns8:password" type="xsd:string"/>
+   <ns1:parameter qname="ns8:lname" type="xsd:string"/>
+   <ns1:parameter qname="ns8:fname" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="getAllItem" qname="ns9:getAllItem" returnQName="ns9:getAllItemReturn" returnType="ns10:Item" soapAction="" xmlns:ns10="http://module" xmlns:ns9="http://connection"/>
+  <ns1:operation name="getItemInCart" qname="ns11:getItemInCart" returnQName="ns11:getItemInCartReturn" returnType="xsd:int" soapAction="" xmlns:ns11="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns11:buyer_id" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="getAllOrder" qname="ns12:getAllOrder" returnQName="ns12:getAllOrderReturn" returnType="xsd:string" soapAction="" xmlns:ns12="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns12:buyer_id" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getItemFromId postItem getItemInCart signUp login getAllItem makeOrder getAllOrder addToCart reduceStock"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
-  <ns1:parameter name="allowedMethods" value="postItem signUp login makeOrder addToCart reduceStock"/>
+  <ns1:parameter name="wsdlPortType" value="CouponMarketService"/>
+  <ns1:parameter name="className" value="connection.CouponMarketService"/>
+  <ns1:parameter name="wsdlServicePort" value="CouponMarketService"/>
+  <ns1:parameter name="schemaQualified" value="http://connection,http://module"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://connection"/>
   <ns1:parameter name="wsdlServiceElement" value="CouponMarketServiceService"/>
-  <ns1:parameter name="wsdlPortType" value="CouponMarketService"/>
-  <ns1:parameter name="sendXsiTypes" value="false"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns13:Item" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:module.Item" xmlns:ns13="http://module"/>
  </ns1:service>
  <ns1:service name="AdminService" provider="java:MSG">
   <ns1:parameter name="allowedMethods" value="AdminService"/>
