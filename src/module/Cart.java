@@ -1,7 +1,7 @@
 package module;
 
 
-public class cart {
+public class Cart {
 	private Integer item_id;
 	private String buyer_id;
 	private Integer quantity;

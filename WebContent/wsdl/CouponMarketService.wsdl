@@ -20,6 +20,48 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="getOrderDetail">
+    <complexType>
+     <sequence>
+      <element name="order_id" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getOrderDetailResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getOrderDetailReturn" type="tns1:Order"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllOrder">
+    <complexType>
+     <sequence>
+      <element name="buyer_id" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllOrderResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getAllOrderReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getItemInCart">
+    <complexType>
+     <sequence>
+      <element name="buyer_id" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getItemInCartResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getItemInCartReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="getItemFromId">
     <complexType>
      <sequence>
@@ -31,6 +73,16 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="getItemFromIdReturn" type="tns1:Item"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllItem">
+    <complexType/>
+   </element>
+   <element name="getAllItemResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getAllItemReturn" type="tns1:Item"/>
      </sequence>
     </complexType>
    </element>
@@ -114,60 +166,33 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="getAllItem">
-    <complexType/>
-   </element>
-   <element name="getAllItemResponse">
+   <element name="getUserById">
     <complexType>
      <sequence>
-      <element maxOccurs="unbounded" name="getAllItemReturn" type="tns1:Item"/>
+      <element name="email" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="getItemInCart">
+   <element name="getUserByIdResponse">
     <complexType>
      <sequence>
-      <element name="buyer_id" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getItemInCartResponse">
-    <complexType>
-     <sequence>
-      <element maxOccurs="unbounded" name="getItemInCartReturn" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getAllOrder">
-    <complexType>
-     <sequence>
-      <element name="buyer_id" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getAllOrderResponse">
-    <complexType>
-     <sequence>
-      <element maxOccurs="unbounded" name="getAllOrderReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getOrderDetail">
-    <complexType>
-     <sequence>
-      <element name="order_id" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getOrderDetailResponse">
-    <complexType>
-     <sequence>
-      <element name="getOrderDetailReturn" type="tns1:order"/>
+      <element name="getUserByIdReturn" type="tns1:User"/>
      </sequence>
     </complexType>
    </element>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://module" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Order">
+    <sequence>
+     <element name="address" nillable="true" type="xsd:string"/>
+     <element name="buyer_id" nillable="true" type="xsd:string"/>
+     <element name="creditCard" nillable="true" type="xsd:string"/>
+     <element name="item_id" nillable="true" type="xsd:int"/>
+     <element name="order_id" nillable="true" type="xsd:string"/>
+     <element name="placedDate" nillable="true" type="xsd:string"/>
+     <element name="quantity" nillable="true" type="xsd:int"/>
+    </sequence>
+   </complexType>
    <complexType name="Item">
     <sequence>
      <element name="createDate" nillable="true" type="xsd:string"/>
@@ -179,15 +204,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="seller_id" nillable="true" type="xsd:string"/>
     </sequence>
    </complexType>
-   <complexType name="order">
+   <complexType name="User">
     <sequence>
-     <element name="address" nillable="true" type="xsd:string"/>
-     <element name="buyer_id" nillable="true" type="xsd:string"/>
-     <element name="creditCard" nillable="true" type="xsd:string"/>
-     <element name="item_id" nillable="true" type="xsd:int"/>
-     <element name="order_id" nillable="true" type="xsd:string"/>
-     <element name="placedDate" nillable="true" type="xsd:string"/>
-     <element name="quantity" nillable="true" type="xsd:int"/>
+     <element name="curCheckin" nillable="true" type="xsd:string"/>
+     <element name="email" nillable="true" type="xsd:string"/>
+     <element name="fname" nillable="true" type="xsd:string"/>
+     <element name="lastCheckin" nillable="true" type="xsd:string"/>
+     <element name="lname" nillable="true" type="xsd:string"/>
+     <element name="password" nillable="true" type="xsd:string"/>
     </sequence>
    </complexType>
   </schema>
@@ -201,14 +225,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="getItemFromIdRequest">
-
-      <wsdl:part element="impl:getItemFromId" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="reduceStockResponse">
 
       <wsdl:part element="impl:reduceStockResponse" name="parameters">
@@ -217,9 +233,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="getAllOrderRequest">
+   <wsdl:message name="getItemFromIdRequest">
 
-      <wsdl:part element="impl:getAllOrder" name="parameters">
+      <wsdl:part element="impl:getItemFromId" name="parameters">
 
       </wsdl:part>
 
@@ -228,6 +244,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="makeOrderRequest">
 
       <wsdl:part element="impl:makeOrder" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllOrderRequest">
+
+      <wsdl:part element="impl:getAllOrder" name="parameters">
 
       </wsdl:part>
 
@@ -249,9 +273,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="getAllItemResponse">
+   <wsdl:message name="signUpRequest">
 
-      <wsdl:part element="impl:getAllItemResponse" name="parameters">
+      <wsdl:part element="impl:signUp" name="parameters">
 
       </wsdl:part>
 
@@ -265,9 +289,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="signUpRequest">
+   <wsdl:message name="getAllItemResponse">
 
-      <wsdl:part element="impl:signUp" name="parameters">
+      <wsdl:part element="impl:getAllItemResponse" name="parameters">
 
       </wsdl:part>
 
@@ -276,6 +300,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="getOrderDetailResponse">
 
       <wsdl:part element="impl:getOrderDetailResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserByIdResponse">
+
+      <wsdl:part element="impl:getUserByIdResponse" name="parameters">
 
       </wsdl:part>
 
@@ -361,6 +393,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="getUserByIdRequest">
+
+      <wsdl:part element="impl:getUserById" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="getItemFromIdResponse">
 
       <wsdl:part element="impl:getItemFromIdResponse" name="parameters">
@@ -383,6 +423,42 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="getOrderDetail">
+
+         <wsdl:input message="impl:getOrderDetailRequest" name="getOrderDetailRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getOrderDetailResponse" name="getOrderDetailResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllOrder">
+
+         <wsdl:input message="impl:getAllOrderRequest" name="getAllOrderRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllOrderResponse" name="getAllOrderResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getItemInCart">
+
+         <wsdl:input message="impl:getItemInCartRequest" name="getItemInCartRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getItemInCartResponse" name="getItemInCartResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="getItemFromId">
 
          <wsdl:input message="impl:getItemFromIdRequest" name="getItemFromIdRequest">
@@ -390,6 +466,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:getItemFromIdResponse" name="getItemFromIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllItem">
+
+         <wsdl:input message="impl:getAllItemRequest" name="getAllItemRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllItemResponse" name="getAllItemResponse">
 
        </wsdl:output>
 
@@ -455,49 +543,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getAllItem">
+      <wsdl:operation name="getUserById">
 
-         <wsdl:input message="impl:getAllItemRequest" name="getAllItemRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getAllItemResponse" name="getAllItemResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getItemInCart">
-
-         <wsdl:input message="impl:getItemInCartRequest" name="getItemInCartRequest">
+         <wsdl:input message="impl:getUserByIdRequest" name="getUserByIdRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:getItemInCartResponse" name="getItemInCartResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getAllOrder">
-
-         <wsdl:input message="impl:getAllOrderRequest" name="getAllOrderRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getAllOrderResponse" name="getAllOrderResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getOrderDetail">
-
-         <wsdl:input message="impl:getOrderDetailRequest" name="getOrderDetailRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getOrderDetailResponse" name="getOrderDetailResponse">
+         <wsdl:output message="impl:getUserByIdResponse" name="getUserByIdResponse">
 
        </wsdl:output>
 
@@ -527,6 +579,60 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="getOrderDetail">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getOrderDetailRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getOrderDetailResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllOrder">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllOrderRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllOrderResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getItemInCart">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getItemInCartRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getItemInCartResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="getItemFromId">
 
          <wsdlsoap:operation soapAction=""/>
@@ -538,6 +644,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="getItemFromIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllItem">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllItemRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllItemResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -635,71 +759,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getAllItem">
+      <wsdl:operation name="getUserById">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="getAllItemRequest">
+         <wsdl:input name="getUserByIdRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="getAllItemResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getItemInCart">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getItemInCartRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getItemInCartResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getAllOrder">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getAllOrderRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getAllOrderResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getOrderDetail">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getOrderDetailRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getOrderDetailResponse">
+         <wsdl:output name="getUserByIdResponse">
 
             <wsdlsoap:body use="literal"/>
 

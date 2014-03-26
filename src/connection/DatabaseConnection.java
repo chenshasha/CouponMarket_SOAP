@@ -9,8 +9,9 @@ import java.util.Arrays;
 import java.util.UUID;
 
 import module.Item;
-import module.order;
-import module.user;
+import module.Order;
+import module.User;
+
 
 
 public class DatabaseConnection {
@@ -22,24 +23,22 @@ public class DatabaseConnection {
 		connect = DbUtil.getConnection();
 	}
 	
-	//view each order detail
-	public order getOrderDetail(String order_id){
-		order orderDetail = new order();
+	//get account info
+	public User getUserById(String email){
+		User user = new User();
 		try{
 			preparedStatement = connect
-				      .prepareStatement("SELECT quantity, buyer_id, placedDate, address, item_id, creditCard FROM couponmarket.order where order_id = ?");
-				preparedStatement.setString(1, order_id);
+				      .prepareStatement("SELECT lname, fname, password, lastCheckin, curCheckin FROM User Where email = ? LIMIT 1");
+				preparedStatement.setString(1, email);
 				ResultSet rs = preparedStatement.executeQuery();
 			if(rs != null){
 				while(rs.next()){
-					orderDetail.setAddress(rs.getString("address"));
-					orderDetail.setBuyer_id(rs.getString("buyer_id"));
-					orderDetail.setCreditCard(rs.getString("creditCard"));
-					orderDetail.setItem_id(rs.getInt("item_id"));
-					orderDetail.setOrder_id(order_id);
-					orderDetail.setPlacedDate(rs.getString("placedDate"));
-					orderDetail.setQuantity(rs.getInt("quantity"));
-		
+					user.setCurCheckin(rs.getString("curCheckin"));
+					user.setEmail(email);
+					user.setFname(rs.getString("fname"));
+					user.setLastCheckin(rs.getString("lastCheckin"));
+					user.setLname(rs.getString("lname"));
+					user.setPassword(rs.getString("password"));
 				}
 			}
 		}
@@ -47,8 +46,44 @@ public class DatabaseConnection {
 			{
 				s.printStackTrace();
 			}
-		return orderDetail;
+		return user;
 	}
+	
+	//get order detail
+	public Order[] getOrderDetail(String order_id){
+		Order[] orders = new Order[100];
+		int n = 0;
+		try
+		{
+			preparedStatement = connect
+				      .prepareStatement("SELECT quantity, buyer_id, placedDate, address, item_id, creditCard FROM couponmarket.order where order_id = ?");
+			preparedStatement.setString(1, order_id);
+				ResultSet rs = preparedStatement.executeQuery();
+			if (rs != null) {
+				
+				while(rs.next())
+				{
+					Order o = new Order();
+					o.setAddress(rs.getString("address"));
+					o.setBuyer_id(rs.getString("buyer_id"));
+					o.setCreditCard(rs.getString("creditCard"));
+					o.setItem_id(rs.getInt("item_id"));
+					o.setOrder_id(order_id);
+					o.setPlacedDate(rs.getString("placedDate"));
+					o.setQuantity(rs.getInt("quantity"));
+					System.out.println(o.getAddress());
+					orders[n] = o;
+					n++;
+				}
+			}
+		}catch (SQLException sql) {
+			sql.printStackTrace();
+		}
+		
+		return Arrays.copyOfRange(orders, 0, n);
+	}
+	
+	
 	//view order_id info
 	public String[] getAllOrder(String buyer_id){
 		String[] rl = new String[100];
@@ -73,32 +108,6 @@ public class DatabaseConnection {
 		return Arrays.copyOfRange(rl, 0, n);
 	}
 	
-	//view user info (no successful)
-//	public user getUser(String email){
-//		user u = new user();
-//		try{
-//			preparedStatement = connect
-//				      .prepareStatement("SELECT password, lname, fname, curCheckin, lastChecin FROM user where email = ?");
-//				preparedStatement.setString(1, email);
-//				ResultSet rs = preparedStatement.executeQuery();
-//			if(rs != null){
-//				while(rs.next()){
-//					u.setCurCheckin(rs.getString("curCheckin"));
-//					u.setEmail(email);
-//					u.setFname(rs.getString("fname"));
-//					u.setLastCheckin(rs.getString("lastCheckin"));
-//					u.setLname(rs.getString("lname"));
-//					u.setPassword(rs.getString("password"));
-//					
-//				}
-//			}
-//		}
-//		catch(SQLException s)
-//			{
-//				s.printStackTrace();
-//			}
-//		return u;
-//	}
 	
 
 	//view cart

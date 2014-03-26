@@ -1,7 +1,7 @@
 package module;
 
 
-public class user {
+public class User {
 	private String lname;
 	private String fname;
 	private String email;

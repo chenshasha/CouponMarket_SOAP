@@ -1,6 +1,6 @@
 package module;
 
-public class order {
+public class Order {
 	
 	private Integer quantity;
 	private String buyer_id;

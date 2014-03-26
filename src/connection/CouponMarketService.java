@@ -3,25 +3,23 @@ package connection;
 import javax.jws.WebService;
 
 import module.Item;
-import module.order;
-import module.user;
+import module.Order;
+import module.User;
 
 import java.sql.SQLException;
 
 
 @WebService
 public class CouponMarketService {
+	public User getUserById(String email){
+		DatabaseConnection db=new DatabaseConnection();		
+		return db.getUserById(email);
+	}
 	
-//	public user getUser(String email){
-//		DatabaseConnection db=new DatabaseConnection();
-//		return db.getUser(email);
-//	}
-	
-	public order getOrderDetail(String order_id){
+	public Order[] getOrderDetail(String order_id){
 		DatabaseConnection db=new DatabaseConnection();		
 		return db.getOrderDetail(order_id);
 	}
-	
 	public String[] getAllOrder(String buyer_id){
 		DatabaseConnection db=new DatabaseConnection();		
 		return db.getAllOrder(buyer_id);
