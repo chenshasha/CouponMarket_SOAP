@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.Arrays;
 import java.util.UUID;
 
+import module.Cart;
 import module.Item;
 import module.Order;
 import module.User;
@@ -21,6 +22,50 @@ public class DatabaseConnection {
 
 	public DatabaseConnection(){
 		connect = DbUtil.getConnection();
+	}
+	
+	public void removeItemInCart(String cart_id){
+		try{
+			preparedStatement = connect
+				      .prepareStatement("DELETE FROM cart WHERE cart_id = ?");
+			preparedStatement.setString(1, cart_id);
+		    preparedStatement.executeUpdate();
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public Cart getCartItemById(String cart_id){
+		Cart cartItem = new Cart();
+		try{
+			preparedStatement = connect
+				      .prepareStatement("SELECT item_id, buyer_id, quantity, addDate, cart_id, merchandise, description, price FROM cart where cart_id = ?");
+			preparedStatement.setString(1, cart_id);
+				ResultSet rs = preparedStatement.executeQuery();
+			if (rs != null) {
+				
+				while(rs.next())
+				{
+					
+					cartItem.setAddDate(rs.getString("addDate"));
+					cartItem.setBuyer_id(rs.getString("buyer_id"));
+					cartItem.setCart_id(rs.getInt("cart_id"));	
+					cartItem.setDescription(rs.getString("description"));
+					cartItem.setItem_id(rs.getInt("item_id"));
+					cartItem.setMerchandise(rs.getString("merchandise"));
+					cartItem.setPrice(rs.getDouble("price"));
+					cartItem.setQuantity(rs.getInt("quantity"));
+					
+				}
+			}
+		}
+		catch(SQLException s)
+			{
+				s.printStackTrace();
+			}
+		return cartItem;
 	}
 	
 	//get account info
@@ -111,18 +156,29 @@ public class DatabaseConnection {
 	
 
 	//view cart
-	public int[] getItemInCart(String buyer_id){
-		int[] rl = new int[100];
+	public Cart[] getItemInCart(String buyer_id){
+		Cart[] carts = new Cart[100];
 		int n = 0;
 		try{
 			preparedStatement = connect
-				      .prepareStatement("SELECT item_id FROM cart WHERE buyer_id = ?");
-				preparedStatement.setString(1, buyer_id);
+				      .prepareStatement("SELECT item_id, buyer_id, quantity, addDate, cart_id, merchandise, description, price FROM cart where buyer_id = ?");
+			preparedStatement.setString(1, buyer_id);
 				ResultSet rs = preparedStatement.executeQuery();
+			if (rs != null) {
 				
-			if(rs != null){
-				while(rs.next()){
-					rl[n] = rs.getInt("item_id");					
+				while(rs.next())
+				{
+					Cart c = new Cart();
+					c.setAddDate(rs.getString("addDate"));
+					c.setBuyer_id(rs.getString("buyer_id"));
+					c.setCart_id(rs.getInt("cart_id"));	
+					c.setDescription(rs.getString("description"));
+					c.setItem_id(rs.getInt("item_id"));
+					c.setMerchandise(rs.getString("merchandise"));
+					c.setPrice(rs.getDouble("price"));
+					c.setQuantity(rs.getInt("quantity"));
+									
+					carts[n] = c;
 					n++;
 				}
 			}
@@ -131,7 +187,7 @@ public class DatabaseConnection {
 			{
 				s.printStackTrace();
 			}
-		return Arrays.copyOfRange(rl, 0, n);
+		return Arrays.copyOfRange(carts, 0, n);
 	}
 	
 	
@@ -170,7 +226,7 @@ public class DatabaseConnection {
 		try
 		{
 			preparedStatement = connect
-				      .prepareStatement("SELECT merchandise, createDate, description, price, quantity, seller_id FROM item where quantity > 0");
+				      .prepareStatement("SELECT item_id, merchandise, createDate, description, price, quantity, seller_id FROM item where quantity > 0");
 				
 				ResultSet rs = preparedStatement.executeQuery();
 			if (rs != null) {
@@ -184,6 +240,7 @@ public class DatabaseConnection {
 					i.setDescription(rs.getString("description"));
 					i.setPrice(rs.getDouble("price"));
 					i.setSeller_id(rs.getString("seller_id"));
+					i.setItem_id(rs.getInt("item_id"));
 					items[n] = i;
 					n++;
 				}
@@ -230,6 +287,7 @@ public class DatabaseConnection {
 					    preparedStatement.setString(7, UUID.randomUUID().toString());
 					    preparedStatement.executeUpdate();   
 					    reduceStock(item_id, quantity);
+					    
 			
 					}catch (SQLException e) {
 						// TODO Auto-generated catch block
@@ -255,7 +313,7 @@ public class DatabaseConnection {
 	}
 	
 	//add an item to cart
-	public boolean addToCart(Integer item_id, String buyer_id, Integer quantity){		
+	public boolean addToCart(Integer item_id, String buyer_id, Integer quantity, String merchandise, String description, Double price){		
 		//if the stock is not enough
 		int stock = 0;
 		try{
@@ -278,11 +336,14 @@ public class DatabaseConnection {
 				java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				String currentTime = sdf.format(dt);
 				preparedStatement = connect
-					      .prepareStatement("INSERT INTO cart (item_id, buyer_id, quantity, addDate) VALUES (?, ?, ?, ?)");
+					      .prepareStatement("INSERT INTO cart (item_id, buyer_id, quantity, addDate, merchandise, description, price) VALUES (?, ?, ?, ?, ?, ?, ?)");
 					preparedStatement.setInt(1, item_id);
 				    preparedStatement.setString(2, buyer_id);
 				    preparedStatement.setInt(3, quantity);
-				    preparedStatement.setString(4, currentTime);		    
+				    preparedStatement.setString(4, currentTime);	
+				    preparedStatement.setString(5, merchandise);
+				    preparedStatement.setString(6, description);
+				    preparedStatement.setDouble(7, price);
 				    preparedStatement.executeUpdate();
 	
 			}catch (SQLException e) {

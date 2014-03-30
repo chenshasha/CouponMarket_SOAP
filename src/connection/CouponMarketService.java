@@ -5,12 +5,24 @@ import javax.jws.WebService;
 import module.Item;
 import module.Order;
 import module.User;
+import module.Cart;
 
 import java.sql.SQLException;
 
 
 @WebService
 public class CouponMarketService {
+	
+	public void removeItemInCart(String cart_id){
+		DatabaseConnection db=new DatabaseConnection();		
+		db.removeItemInCart(cart_id);
+	}
+	
+	public Cart getCartItemById(String cart_id){
+		DatabaseConnection db=new DatabaseConnection();		
+		return db.getCartItemById(cart_id);
+	}
+	
 	public User getUserById(String email){
 		DatabaseConnection db=new DatabaseConnection();		
 		return db.getUserById(email);
@@ -25,8 +37,7 @@ public class CouponMarketService {
 		return db.getAllOrder(buyer_id);
 	}
 	
-	public int[] getItemInCart(String buyer_id){
-		
+	public Cart[] getItemInCart(String buyer_id){		
 		DatabaseConnection db=new DatabaseConnection();		
 		return db.getItemInCart(buyer_id);
 	}
@@ -53,10 +64,9 @@ public class CouponMarketService {
 		return db.makeOrder(buyer_id, address, item_id, creditCard, quantity);
 	}
 	
-	public boolean addToCart(Integer item_id, String buyer_id, Integer quantity){
+	public boolean addToCart(Integer item_id, String buyer_id, Integer quantity, String merchandise, String description, Double price){
 		DatabaseConnection db=new DatabaseConnection();
-		return db.addToCart(item_id, buyer_id, quantity);	
-	
+		return db.addToCart(item_id, buyer_id, quantity, merchandise, description, price);
 	}
 	
 	public boolean postItem (String seller_id, Integer quantity, String merchandise, String description, Double price){

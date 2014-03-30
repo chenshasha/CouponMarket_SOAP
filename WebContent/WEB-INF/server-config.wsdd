@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -27,52 +27,61 @@
    <ns2:parameter qname="ns1:email" type="xsd:string"/>
    <ns2:parameter qname="ns1:password" type="xsd:string"/>
   </ns2:operation>
-  <ns1:operation name="getOrderDetail" qname="ns2:getOrderDetail" returnQName="ns2:getOrderDetailReturn" returnType="ns3:Order" soapAction="" xmlns:ns2="http://connection" xmlns:ns3="http://module">
-   <ns1:parameter qname="ns2:order_id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getUserById" qname="ns2:getUserById" returnQName="ns2:getUserByIdReturn" returnType="ns3:User" soapAction="" xmlns:ns2="http://connection" xmlns:ns3="http://module">
+   <ns1:parameter qname="ns2:email" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="getAllOrder" qname="ns4:getAllOrder" returnQName="ns4:getAllOrderReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns4:buyer_id" type="xsd:string"/>
+  <ns1:operation name="getOrderDetail" qname="ns4:getOrderDetail" returnQName="ns4:getOrderDetailReturn" returnType="ns5:Order" soapAction="" xmlns:ns4="http://connection" xmlns:ns5="http://module">
+   <ns1:parameter qname="ns4:order_id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="getItemInCart" qname="ns5:getItemInCart" returnQName="ns5:getItemInCartReturn" returnType="xsd:int" soapAction="" xmlns:ns5="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns5:buyer_id" type="xsd:string"/>
+  <ns1:operation name="getAllOrder" qname="ns6:getAllOrder" returnQName="ns6:getAllOrderReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:buyer_id" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="getItemFromId" qname="ns6:getItemFromId" returnQName="ns6:getItemFromIdReturn" returnType="ns7:Item" soapAction="" xmlns:ns6="http://connection" xmlns:ns7="http://module">
-   <ns1:parameter qname="ns6:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getItemInCart" qname="ns7:getItemInCart" returnQName="ns7:getItemInCartReturn" returnType="ns8:Cart" soapAction="" xmlns:ns7="http://connection" xmlns:ns8="http://module">
+   <ns1:parameter qname="ns7:buyer_id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="getAllItem" qname="ns8:getAllItem" returnQName="ns8:getAllItemReturn" returnType="ns9:Item" soapAction="" xmlns:ns8="http://connection" xmlns:ns9="http://module"/>
-  <ns1:operation name="reduceStock" qname="ns10:reduceStock" soapAction="" xmlns:ns10="http://connection">
-   <ns1:parameter qname="ns10:item_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns10:sellQuantity" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getItemFromId" qname="ns9:getItemFromId" returnQName="ns9:getItemFromIdReturn" returnType="ns10:Item" soapAction="" xmlns:ns10="http://module" xmlns:ns9="http://connection">
+   <ns1:parameter qname="ns9:id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="makeOrder" qname="ns11:makeOrder" returnQName="ns11:makeOrderReturn" returnType="xsd:boolean" soapAction="" xmlns:ns11="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns11:buyer_id" type="xsd:string"/>
-   <ns1:parameter qname="ns11:address" type="xsd:string"/>
-   <ns1:parameter qname="ns11:item_id" type="xsd:int"/>
-   <ns1:parameter qname="ns11:creditCard" type="xsd:string"/>
-   <ns1:parameter qname="ns11:quantity" type="xsd:int"/>
+  <ns1:operation name="getAllItem" qname="ns11:getAllItem" returnQName="ns11:getAllItemReturn" returnType="ns12:Item" soapAction="" xmlns:ns11="http://connection" xmlns:ns12="http://module"/>
+  <ns1:operation name="reduceStock" qname="ns13:reduceStock" soapAction="" xmlns:ns13="http://connection">
+   <ns1:parameter qname="ns13:item_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns13:sellQuantity" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="addToCart" qname="ns12:addToCart" returnQName="ns12:addToCartReturn" returnType="xsd:boolean" soapAction="" xmlns:ns12="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns12:item_id" type="xsd:int"/>
-   <ns1:parameter qname="ns12:buyer_id" type="xsd:string"/>
-   <ns1:parameter qname="ns12:quantity" type="xsd:int"/>
+  <ns1:operation name="makeOrder" qname="ns14:makeOrder" returnQName="ns14:makeOrderReturn" returnType="xsd:boolean" soapAction="" xmlns:ns14="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns14:buyer_id" type="xsd:string"/>
+   <ns1:parameter qname="ns14:address" type="xsd:string"/>
+   <ns1:parameter qname="ns14:item_id" type="xsd:int"/>
+   <ns1:parameter qname="ns14:creditCard" type="xsd:string"/>
+   <ns1:parameter qname="ns14:quantity" type="xsd:int"/>
   </ns1:operation>
-  <ns1:operation name="postItem" qname="ns13:postItem" returnQName="ns13:postItemReturn" returnType="xsd:boolean" soapAction="" xmlns:ns13="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns13:seller_id" type="xsd:string"/>
-   <ns1:parameter qname="ns13:quantity" type="xsd:int"/>
-   <ns1:parameter qname="ns13:merchandise" type="xsd:string"/>
-   <ns1:parameter qname="ns13:description" type="xsd:string"/>
-   <ns1:parameter qname="ns13:price" type="xsd:double"/>
+  <ns1:operation name="addToCart" qname="ns15:addToCart" returnQName="ns15:addToCartReturn" returnType="xsd:boolean" soapAction="" xmlns:ns15="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns15:item_id" type="xsd:int"/>
+   <ns1:parameter qname="ns15:buyer_id" type="xsd:string"/>
+   <ns1:parameter qname="ns15:quantity" type="xsd:int"/>
+   <ns1:parameter qname="ns15:merchandise" type="xsd:string"/>
+   <ns1:parameter qname="ns15:description" type="xsd:string"/>
+   <ns1:parameter qname="ns15:price" type="xsd:double"/>
   </ns1:operation>
-  <ns1:operation name="signUp" qname="ns14:signUp" returnQName="ns14:signUpReturn" returnType="xsd:boolean" soapAction="" xmlns:ns14="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns14:email" type="xsd:string"/>
-   <ns1:parameter qname="ns14:password" type="xsd:string"/>
-   <ns1:parameter qname="ns14:lname" type="xsd:string"/>
-   <ns1:parameter qname="ns14:fname" type="xsd:string"/>
+  <ns1:operation name="postItem" qname="ns16:postItem" returnQName="ns16:postItemReturn" returnType="xsd:boolean" soapAction="" xmlns:ns16="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns16:seller_id" type="xsd:string"/>
+   <ns1:parameter qname="ns16:quantity" type="xsd:int"/>
+   <ns1:parameter qname="ns16:merchandise" type="xsd:string"/>
+   <ns1:parameter qname="ns16:description" type="xsd:string"/>
+   <ns1:parameter qname="ns16:price" type="xsd:double"/>
   </ns1:operation>
-  <ns1:operation name="getUserById" qname="ns15:getUserById" returnQName="ns15:getUserByIdReturn" returnType="ns16:User" soapAction="" xmlns:ns15="http://connection" xmlns:ns16="http://module">
-   <ns1:parameter qname="ns15:email" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="signUp" qname="ns17:signUp" returnQName="ns17:signUpReturn" returnType="xsd:boolean" soapAction="" xmlns:ns17="http://connection" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns17:email" type="xsd:string"/>
+   <ns1:parameter qname="ns17:password" type="xsd:string"/>
+   <ns1:parameter qname="ns17:lname" type="xsd:string"/>
+   <ns1:parameter qname="ns17:fname" type="xsd:string"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="getItemFromId postItem getItemInCart signUp getOrderDetail getUserById login makeOrder getAllItem addToCart getAllOrder reduceStock"/>
+  <ns1:operation name="getCartItemById" qname="ns18:getCartItemById" returnQName="ns18:getCartItemByIdReturn" returnType="ns19:Cart" soapAction="" xmlns:ns18="http://connection" xmlns:ns19="http://module">
+   <ns1:parameter qname="ns18:cart_id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="removeItemInCart" qname="ns20:removeItemInCart" soapAction="" xmlns:ns20="http://connection">
+   <ns1:parameter qname="ns20:cart_id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getItemFromId postItem signUp getUserById getAllItem makeOrder getCartItemById getItemInCart getOrderDetail login removeItemInCart getAllOrder addToCart reduceStock"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="CouponMarketService"/>
   <ns1:parameter name="className" value="connection.CouponMarketService"/>
@@ -80,9 +89,10 @@
   <ns1:parameter name="schemaQualified" value="http://connection,http://module"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://connection"/>
   <ns1:parameter name="wsdlServiceElement" value="CouponMarketServiceService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns17:Order" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:module.Order" xmlns:ns17="http://module"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns18:User" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:module.User" xmlns:ns18="http://module"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns19:Item" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:module.Item" xmlns:ns19="http://module"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns21:Cart" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:module.Cart" xmlns:ns21="http://module"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns22:Order" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:module.Order" xmlns:ns22="http://module"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns23:User" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:module.User" xmlns:ns23="http://module"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns24:Item" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:module.Item" xmlns:ns24="http://module"/>
  </ns1:service>
  <ns1:service name="AdminService" provider="java:MSG">
   <ns1:parameter name="allowedMethods" value="AdminService"/>
