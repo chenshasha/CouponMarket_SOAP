@@ -81,7 +81,10 @@
   <ns1:operation name="removeItemInCart" qname="ns20:removeItemInCart" soapAction="" xmlns:ns20="http://connection">
    <ns1:parameter qname="ns20:cart_id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="getItemFromId postItem signUp getUserById getAllItem makeOrder getCartItemById getItemInCart getOrderDetail login removeItemInCart getAllOrder addToCart reduceStock"/>
+  <ns1:operation name="getOrderByBuyerId" qname="ns21:getOrderByBuyerId" returnQName="ns21:getOrderByBuyerIdReturn" returnType="ns22:Order" soapAction="" xmlns:ns21="http://connection" xmlns:ns22="http://module">
+   <ns1:parameter qname="ns21:byer_email" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getOrderByBuyerId getItemFromId postItem signUp getUserById getAllItem makeOrder getCartItemById getItemInCart getOrderDetail login removeItemInCart getAllOrder addToCart reduceStock"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="CouponMarketService"/>
   <ns1:parameter name="className" value="connection.CouponMarketService"/>
@@ -89,10 +92,10 @@
   <ns1:parameter name="schemaQualified" value="http://connection,http://module"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://connection"/>
   <ns1:parameter name="wsdlServiceElement" value="CouponMarketServiceService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns21:Cart" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:module.Cart" xmlns:ns21="http://module"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns22:Order" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:module.Order" xmlns:ns22="http://module"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns23:User" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:module.User" xmlns:ns23="http://module"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns24:Item" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:module.Item" xmlns:ns24="http://module"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns23:Cart" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:module.Cart" xmlns:ns23="http://module"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns24:Order" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:module.Order" xmlns:ns24="http://module"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns25:User" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:module.User" xmlns:ns25="http://module"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns26:Item" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:module.Item" xmlns:ns26="http://module"/>
  </ns1:service>
  <ns1:service name="AdminService" provider="java:MSG">
   <ns1:parameter name="allowedMethods" value="AdminService"/>

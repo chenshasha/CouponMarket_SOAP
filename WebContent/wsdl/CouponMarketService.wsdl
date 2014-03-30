@@ -207,6 +207,20 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="removeItemInCartResponse">
     <complexType/>
    </element>
+   <element name="getOrderByBuyerId">
+    <complexType>
+     <sequence>
+      <element name="byer_email" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getOrderByBuyerIdResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getOrderByBuyerIdReturn" type="tns1:Order"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://module" xmlns="http://www.w3.org/2001/XMLSchema">
    <complexType name="User">
@@ -255,6 +269,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    </complexType>
   </schema>
  </wsdl:types>
+
+   <wsdl:message name="getOrderByBuyerIdResponse">
+
+      <wsdl:part element="impl:getOrderByBuyerIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
 
    <wsdl:message name="getItemFromIdRequest">
 
@@ -456,6 +478,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="getOrderByBuyerIdRequest">
+
+      <wsdl:part element="impl:getOrderByBuyerId" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="removeItemInCartRequest">
 
       <wsdl:part element="impl:removeItemInCart" name="parameters">
@@ -645,6 +675,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:removeItemInCartResponse" name="removeItemInCartResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getOrderByBuyerId">
+
+         <wsdl:input message="impl:getOrderByBuyerIdRequest" name="getOrderByBuyerIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getOrderByBuyerIdResponse" name="getOrderByBuyerIdResponse">
 
        </wsdl:output>
 
@@ -901,6 +943,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="removeItemInCartResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getOrderByBuyerId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getOrderByBuyerIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getOrderByBuyerIdResponse">
 
             <wsdlsoap:body use="literal"/>
 

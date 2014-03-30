@@ -13,6 +13,11 @@ import java.sql.SQLException;
 @WebService
 public class CouponMarketService {
 	
+	public Order[] getOrderByBuyerId(String byer_email){
+		DatabaseConnection db=new DatabaseConnection();		
+		return db.getOrderByBuyerId(byer_email);
+	}
+	
 	public void removeItemInCart(String cart_id){
 		DatabaseConnection db=new DatabaseConnection();		
 		db.removeItemInCart(cart_id);

@@ -24,6 +24,41 @@ public class DatabaseConnection {
 		connect = DbUtil.getConnection();
 	}
 	
+	
+	//get order detail
+		public Order[] getOrderByBuyerId(String byer_email){
+			Order[] orders = new Order[100];
+			int n = 0;
+			try
+			{
+				preparedStatement = connect
+					      .prepareStatement("SELECT quantity, buyer_id, placedDate, address, item_id, creditCard, order_id FROM couponmarket.order where buyer_id = ?");
+				preparedStatement.setString(1, byer_email);
+					ResultSet rs = preparedStatement.executeQuery();
+				if (rs != null) {
+					
+					while(rs.next())
+					{
+						Order o = new Order();
+						o.setAddress(rs.getString("address"));
+						o.setBuyer_id(rs.getString("buyer_id"));
+						o.setCreditCard(rs.getString("creditCard"));
+						o.setItem_id(rs.getInt("item_id"));
+						o.setOrder_id(rs.getString("order_id"));
+						o.setPlacedDate(rs.getString("placedDate"));
+						o.setQuantity(rs.getInt("quantity"));
+						System.out.println(o.getAddress());
+						orders[n] = o;
+						n++;
+					}
+				}
+			}catch (SQLException sql) {
+				sql.printStackTrace();
+			}
+			
+			return Arrays.copyOfRange(orders, 0, n);
+		}
+	
 	public void removeItemInCart(String cart_id){
 		try{
 			preparedStatement = connect

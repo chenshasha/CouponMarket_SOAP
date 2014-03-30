@@ -69,7 +69,10 @@
       <operation xmlns:operNS="http://connection" name="removeItemInCart" qname="operNS:removeItemInCart" soapAction="">
         <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:cart_id" type="tns:string"/>
       </operation>
-      <parameter name="allowedMethods" value="getItemFromId postItem signUp getUserById getAllItem makeOrder getCartItemById getItemInCart getOrderDetail login removeItemInCart getAllOrder addToCart reduceStock"/>
+      <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://module" name="getOrderByBuyerId" qname="operNS:getOrderByBuyerId" returnQName="retNS:getOrderByBuyerIdReturn" returnType="rtns:Order" soapAction="">
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:byer_email" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="getOrderByBuyerId getItemFromId postItem signUp getUserById getAllItem makeOrder getCartItemById getItemInCart getOrderDetail login removeItemInCart getAllOrder addToCart reduceStock"/>
 
       <typeMapping xmlns:ns="http://module" qname="ns:Cart" type="java:module.Cart" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
       <typeMapping xmlns:ns="http://module" qname="ns:Order" type="java:module.Order" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
